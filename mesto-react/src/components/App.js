@@ -1,36 +1,15 @@
-import logo from '../images/mesto.svg';
-
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
+import ImagePopup from "./ImagePopup";
 
 function App() {
   return (
       <>
       <div className="page">
-          <header className="header">
-              <img className="header__logo" src={logo} alt="Место" />
-          </header>
-          <main className="content">
-              <section className="profile">
-                  <div className="profile__foto-container">
-                      <figure className="profile__foto-edit"></figure>
-                      <img className="profile__foto" src="<%=require('./images/profile.jpg')%>" alt="Фото профиля" />
-                  </div>
-                  <div className="profile__container-text">
-                      <h1 className="profile__title"></h1>
-                      <p className="profile__subtitle"></p>
-                  </div>
-                  <button className="profile__button-edit" type="button"></button>
-                  <button className="profile__button-add" type="button"></button>
-              </section>
-
-              <section className="element">
-                  <ul className="element__grid">
-
-                  </ul>
-              </section>
-          </main>
-          <footer className="footer">
-              <p className="footer__copyright">&copy; 2021 Mesto Russia</p>
-          </footer>
+          <Header />
+          <Main />
+          <Footer />
       </div>
         <div className="popup popup_type_profile">
         <div className="popup__container">
@@ -62,13 +41,7 @@ function App() {
             </form>
         </div>
     </div>
-    <div className="popup popup_type_preview">
-        <div className="popup__preview-container">
-            <span className="popup__close popup__close_type_preview"></span>
-            <img className="popup__preview-img" src=" " alt=" " />
-                <p className="popup__preview-subtitle"></p>
-        </div>
-    </div>
+    <ImagePopup />
     <div className="popup popup_type_remove">
         <div className="popup__container">
             <button className="popup__close popup__close_type_remove" type="button"></button>
