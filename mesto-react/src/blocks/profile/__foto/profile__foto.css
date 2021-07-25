@@ -1,10 +1,12 @@
 .profile__foto{
   overflow: hidden;
-  object-fit: cover;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  min-width: 120px;
+  min-height: 120px;
   align-self: center;
+  background-image: url("../../../images/profile.jpg");
+  background-position: center;
+  background-size: cover;
   transition: all .3s ease;
 }
 
