@@ -8,3 +8,4 @@
 * JavaScript
 * ООП
 * Webpack
+* React
