@@ -1,12 +1,16 @@
 import React from "react";
 
 function Cards(props){
+  function handleClick() {
+    console.log('props', props)
+    props.onCardClick(props.card)
+  }
   return(
 
       <div id="card-templete">
         <li className="element__container">
           <div className="element__foto-container">
-            <img className="element__foto"  src={props.card.link} alt="" />
+            <img className="element__foto" onClick={handleClick} src={props.card.link} alt="Фотография поста" />
             <button className="element__trash"></button>
           </div>
           <div className="element__description">

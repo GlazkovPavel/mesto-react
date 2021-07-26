@@ -19,14 +19,14 @@ function Main(props){
               console.error(err)
             })
 
-    })
+    }, [])
 
     return(
         <main className="content">
             <section className="profile">
                 <div className="profile__foto-container" onClick={props.onEditAvatar}>
                     <figure className="profile__foto-edit"></figure>
-                    <img className="profile__foto" alt="Фото профиля" style={{ backgroundImage: `url(${userAvatar})` }}  />
+                    <img className="profile__foto" alt={userName} style={{ backgroundImage: `url(${userAvatar})` }}  />
                 </div>
                 <div className="profile__container-text">
                     <h1 className="profile__title">{userName}</h1>
@@ -42,9 +42,8 @@ function Main(props){
                       <Cards
                         key={card._id}
                         card={card}
-                        onCardDelete={props.onCardDelete}
-                        onCardLike={props.onCardLike}
                         onCardClick={props.onCardClick}
+
                       />
                   ))}
 
