@@ -25,9 +25,8 @@ function Main(props){
         <main className="content">
             <section className="profile">
                 <div className="profile__foto-container" onClick={props.onEditAvatar}>
-                    <figure className="profile__foto-edit">
-                    <img className="profile__foto" alt={userName} style={{ backgroundImage: `url(${userAvatar})` }}  />
-                    </figure>
+                    <button className="profile__foto-edit"></button>
+                    <img className="profile__foto" alt={userName} src={userAvatar}  />
                 </div>
                 <div className="profile__container-text">
                     <h1 className="profile__title">{userName}</h1>

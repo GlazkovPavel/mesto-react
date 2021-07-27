@@ -3,7 +3,7 @@ import PopupWithForm from "./PopupWithForm";
 
 function EditProfilePopup({isOpen, onClose}){
     return(
-        <PopupWithForm isOpen={isOpen} onClose={onClose} name="profile" title="Редактировать профиль">
+        <PopupWithForm isOpen={isOpen} onClose={onClose} name="profile" title="Редактировать профиль" buttonText='Сохранить'>
             <input className="popup__item popup__item_type_name" id="text-input-name" type="text" name="name"
                    placeholder="Ваше имя" required minLength="2" maxLength="40" />
                 <span className="text-input-name-error popup__input-error"></span>
