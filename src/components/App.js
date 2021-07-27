@@ -14,8 +14,8 @@ function App() {
     const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
     const [cards, setCards] = React.useState([])
-    const [selectedCard, setSelectedCard] = React.useState(false)
-    const [showImage, setShowImage] = React.useState({});
+    const [selectedCard, setSelectedCard] = React.useState({})
+    const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
 
     React.useEffect(() => {
       api.getInitialCards()
@@ -24,15 +24,15 @@ function App() {
     }, [])
 
     const handleCardClick = (data) => {
-      setSelectedCard(true)
-      setShowImage(data)
+      setImagePopupOpen(true)
+      setSelectedCard(data)
     }
 
     const closeAllPopups = () => {
         setEditAvatarPopupOpen(false)
         setEditProfilePopupOpen(false)
         setAddPlacePopupOpen(false)
-        setSelectedCard(false)
+        setImagePopupOpen(false)
     }
 
     const handleEditProfileClick = () => {
@@ -45,7 +45,6 @@ function App() {
         setEditAvatarPopupOpen(true)
     }
   return (
-      <>
       <div className="page">
           <Header />
           <Main
@@ -60,12 +59,10 @@ function App() {
           <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
           <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
           <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
-          <ImagePopup isOpen={selectedCard} onClose={closeAllPopups} card={showImage} />
+          <ImagePopup isOpen={isImagePopupOpen} onClose={closeAllPopups} card={selectedCard} />
           <Footer />
       </div>
 
-
-    </>
   );
 
 }

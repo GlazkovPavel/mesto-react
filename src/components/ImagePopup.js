@@ -1,13 +1,12 @@
 import React from "react";
 
-function ImagePopup(props){
-  debugger;
+function ImagePopup({isOpen, onClose, card}){
     return(
-        <div className={`popup popup_type_preview ${props.isOpen && 'popup_opened'}`}>
+        <div className={`popup popup_type_preview ${isOpen && 'popup_opened'}`}>
             <div className="popup__preview-container">
-                <span className="popup__close popup__close_type_preview" onClick={props.onClose}></span>
-                <img className="popup__preview-img" src={props.card.link} alt={props.card.name} />
-                <p className="popup__preview-subtitle">{props.card.name}</p>
+                <span className="popup__close popup__close_type_preview" onClick={onClose}></span>
+                <img className="popup__preview-img" src={card.link} alt={card.name} />
+                <p className="popup__preview-subtitle">{card.name}</p>
             </div>
         </div>
     )

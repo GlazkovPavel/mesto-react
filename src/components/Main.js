@@ -3,9 +3,9 @@ import {api} from "../utils/api";
 import Cards from "./Cards";
 
 function Main(props){
-    const [userAvatar, setUserAvatar] = React.useState()
-    const [userName, setUserName] = React.useState()
-    const [userDescription, setUserDescription] = React.useState()
+    const [userAvatar, setUserAvatar] = React.useState('')
+    const [userName, setUserName] = React.useState('')
+    const [userDescription, setUserDescription] = React.useState('')
 
 
     React.useEffect(() => {
@@ -25,8 +25,9 @@ function Main(props){
         <main className="content">
             <section className="profile">
                 <div className="profile__foto-container" onClick={props.onEditAvatar}>
-                    <figure className="profile__foto-edit"></figure>
+                    <figure className="profile__foto-edit">
                     <img className="profile__foto" alt={userName} style={{ backgroundImage: `url(${userAvatar})` }}  />
+                    </figure>
                 </div>
                 <div className="profile__container-text">
                     <h1 className="profile__title">{userName}</h1>
