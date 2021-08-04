@@ -19,6 +19,13 @@ function Main(props){
         .catch(err => {console.error(err)})
   }
 
+  function handleCardDelete(card){
+    api.deleteCard(card._id)
+        .then(() => {
+          props.setCards(props.cards.filter((c) => c._id !== card._id))
+        })
+  }
+
     return(
         <main className="content">
             <section className="profile">
@@ -42,6 +49,7 @@ function Main(props){
                         card={card}
                         onCardClick={props.onCardClick}
                         onCardLike={handleCardLike}
+                        onCardDelete={handleCardDelete}
 
                       />
                   ))}
