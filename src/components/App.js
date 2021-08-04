@@ -7,6 +7,7 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import {api} from "../utils/api";
 import ImagePopup from "./ImagePopup";
+import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
 function App() {
 
@@ -16,6 +17,13 @@ function App() {
     const [cards, setCards] = React.useState([])
     const [selectedCard, setSelectedCard] = React.useState({})
     const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
+    const [currentUser, setCurrentUser] = React.useState([])
+
+    React.useEffect(() => {
+      api.getUserInfo()
+          .then(res=>{setCurrentUser(res)})
+          .catch(err => {console.error(err)})
+    }, [])
 
     React.useEffect(() => {
       api.getInitialCards()
@@ -45,6 +53,7 @@ function App() {
         setEditAvatarPopupOpen(true)
     }
   return (
+      <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
           <Header />
           <Main
@@ -62,7 +71,7 @@ function App() {
           <ImagePopup isOpen={isImagePopupOpen} onClose={closeAllPopups} card={selectedCard} />
           <Footer />
       </div>
-
+      </CurrentUserContext.Provider>
   );
 
 }

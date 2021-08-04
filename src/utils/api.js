@@ -19,7 +19,7 @@ class Api {
             .then(this._getResponse)
     }
 
-    getUserInfoStart() {
+    getUserInfo() {
         return fetch(`${this._url}/users/me`, {
             headers: this._headers
         })
