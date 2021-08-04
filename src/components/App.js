@@ -62,6 +62,7 @@ function App() {
               onAddPlace={handleAddPlaceClick}
               onCardClick={handleCardClick}
               cards={cards}
+              setCards={setCards}
 
 
           />

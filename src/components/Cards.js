@@ -1,12 +1,16 @@
 import React from "react";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
-function Cards({ card, onCardClick }){
+function Cards({ card, onCardClick, onCardLike }){
 
   const currentUser = React.useContext(CurrentUserContext)
 
   function handleClick() {
     onCardClick(card)
+  }
+
+  function handleLikeClick() {
+    onCardLike(card)
   }
 
   // Определяем, являемся ли мы владельцем текущей карточки
@@ -22,7 +26,7 @@ function Cards({ card, onCardClick }){
 
 // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = (
-      `element__description-like' ${isLiked ? 'element__description-like_active' : 'element__description-like'}`
+      `element__description-like ${isLiked ? 'element__description-like_active' : ' '}`
   );
 
   return(
@@ -35,7 +39,7 @@ function Cards({ card, onCardClick }){
           <div className="element__description">
             <h2 className="element__description-text">{card.name}</h2>
             <div className="element__container-like">
-              <button className={cardLikeButtonClassName} type="button"></button>
+              <button className={cardLikeButtonClassName} onClick={handleLikeClick} type="button"></button>
               <span className="element__likes">{card.likes.length}</span>
             </div>
           </div>
