@@ -71,6 +71,15 @@ function App() {
           .catch(err => {console.error(err)})
     }
 
+    const handleAddPlaceSubmit = (newCard) => {
+      api.setCardServer(newCard)
+          .then((res) => {
+            setCards([res, ...cards]);
+            closeAllPopups()
+          })
+          .catch(err => {console.error(err)})
+    }
+
   return (
       <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -84,7 +93,7 @@ function App() {
               setCards={setCards}
 
           />
-          <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+          <AddPlacePopup onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
           <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
           <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
           <ImagePopup isOpen={isImagePopupOpen} onClose={closeAllPopups} card={selectedCard} />
