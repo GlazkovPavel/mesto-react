@@ -61,6 +61,16 @@ function App() {
           })
           .catch(err => {console.error(err)})
     }
+
+    const handleUpdateAvatar = (data) => {
+      api.changeAvatar(data)
+          .then((res) => {
+            setCurrentUser(res)
+            closeAllPopups()
+          })
+          .catch(err => {console.error(err)})
+    }
+
   return (
       <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -75,7 +85,7 @@ function App() {
 
           />
           <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
-          <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+          <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
           <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
           <ImagePopup isOpen={isImagePopupOpen} onClose={closeAllPopups} card={selectedCard} />
           <Footer />

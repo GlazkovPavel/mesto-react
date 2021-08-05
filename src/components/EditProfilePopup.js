@@ -21,9 +21,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}){
   }, [currentUser]);
 
   function handleSubmit(e) {
-    // Запрещаем браузеру переходить по адресу формы
     e.preventDefault();
-
     onUpdateUser({
       name,
       about: description,
