@@ -99,6 +99,20 @@ function App() {
         .catch(err => {console.error(err)})
   }
 
+  React.useEffect(() => {
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeAllPopups();
+      }
+    })
+  },[])
+
+  function overlayClick(e) {
+      if (e.classList.contains('popup')){
+        closeAllPopups()
+      }
+  }
+
   return (
       <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -114,10 +128,10 @@ function App() {
               setCards={setCards}
 
           />
-          <AddPlacePopup onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
-          <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
-          <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
-          <ImagePopup isOpen={isImagePopupOpen} onClose={closeAllPopups} card={selectedCard} />
+          <AddPlacePopup overlay={overlayClick} onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+          <EditAvatarPopup overlay={overlayClick} onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+          <EditProfilePopup overlay={overlayClick} onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+          <ImagePopup overlay={overlayClick} isOpen={isImagePopupOpen} onClose={closeAllPopups} card={selectedCard} />
           <Footer />
       </div>
       </CurrentUserContext.Provider>
