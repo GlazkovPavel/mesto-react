@@ -21,7 +21,7 @@ function App() {
 
     React.useEffect(() => {
       api.getUserInfo()
-          .then(res=>{setCurrentUser(res)})
+          .then(res => {setCurrentUser(res)})
           .catch(err => {console.error(err)})
     }, [])
 
@@ -52,6 +52,15 @@ function App() {
     function handleEditAvatarClick(){
         setEditAvatarPopupOpen(true)
     }
+
+    const handleUpdateUser = (data) => {
+      api.setUserInfo(data)
+          .then((res) => {
+            setCurrentUser(res)
+            closeAllPopups()
+          })
+          .catch(err => {console.error(err)})
+    }
   return (
       <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -64,11 +73,10 @@ function App() {
               cards={cards}
               setCards={setCards}
 
-
           />
           <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
           <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
-          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+          <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
           <ImagePopup isOpen={isImagePopupOpen} onClose={closeAllPopups} card={selectedCard} />
           <Footer />
       </div>
