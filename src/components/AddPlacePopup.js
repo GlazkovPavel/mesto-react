@@ -35,8 +35,8 @@ function AddPlacePopup(props){
 
     return(
         <PopupWithForm overlayClick={overlayClick} onSubmit={handleSubmit} isOpen={props.isOpen} onClose={props.onClose} name="add" title="Новое место" buttonText='Сохранить'>
-            <input className="popup__item popup__item_title_add" placeholder="Название" id="text-input" value={name} onChange={handleNameChange}
-               type="text" name="name"  required minLength="2" maxLength="40" />
+          <input className="popup__item popup__item_title_add" value={name} onChange={handleNameChange} id="text-input"
+                 type="text" placeholder="Название" required minLength="2" maxLength="30" />
             <span className="text-input-name-error popup__input-error"></span>
             <input className="popup__item popup__item_type_job" id="text-input-job" value={link} onChange={handleLinkChange}
                    type="url" name="link" placeholder="Ссылка на картинку" required minLength="2" maxLength="200" />
