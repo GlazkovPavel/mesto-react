@@ -1,5 +1,5 @@
 import React from 'react';
-import Cards from "./Cards";
+import Card from "./Card";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
 function Main(props){
@@ -24,7 +24,7 @@ function Main(props){
             <section className="element">
                 <ul className="element__grid">
                   {props.cards.map(card =>(
-                      <Cards
+                      <Card
                         key={card._id}
                         card={card}
                         onCardClick={props.onCardClick}
