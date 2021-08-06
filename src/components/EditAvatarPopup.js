@@ -2,11 +2,12 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 
-function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, overlay}){
+function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, overlay, isText, onChangeTextButton}){
   const inputAvatarRef = React.useRef();
 
   function handleSubmit(e) {
     e.preventDefault();
+    onChangeTextButton();
     onUpdateAvatar({
       avatar: inputAvatarRef.current.value /* Значение инпута, полученное с помощью рефа */,
     });
@@ -16,8 +17,11 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, overlay}){
     overlay(e.target)
   }
 
+  const handleButtonText = (`${isText ? 'Сохранение...' : 'Сохранение'}`);
+
+
   return(
-        <PopupWithForm overlayClick={overlayClick} onSubmit={handleSubmit} isOpen={isOpen} onClose={onClose} name="avatar" title="Обновить аватар" buttonText='Сохранить'>
+        <PopupWithForm overlayClick={overlayClick} onSubmit={handleSubmit} isOpen={isOpen} onClose={onClose} name="avatar" title="Обновить аватар" buttonText={handleButtonText}>
             <input ref={inputAvatarRef} className="popup__item popup__item_type_foto" id="url-inputAvatar"
                    type="url" name="link" placeholder="Ссылка на фото" required />
                 <span className="url-inputAvatar-error popup__input-error"></span>

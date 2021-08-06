@@ -1,10 +1,7 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
-//import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
 function AddPlacePopup(props){
-
-  //const currentUser = React.useContext(CurrentUserContext);
 
   const [name, setName] = React.useState('')
   const [link, setLink] = React.useState('')
@@ -23,6 +20,7 @@ function AddPlacePopup(props){
 
   function handleSubmit(e){
     e.preventDefault()
+    props.onChangeTextButton();
     props.onAddPlace({
       name,
       link,
@@ -33,8 +31,10 @@ function AddPlacePopup(props){
     props.overlay(e.target)
   }
 
+  const handleButtonText = (`${props.isText ? 'Сохранение...' : 'Сохранение'}`);
+
     return(
-        <PopupWithForm overlayClick={overlayClick} onSubmit={handleSubmit} isOpen={props.isOpen} onClose={props.onClose} name="add" title="Новое место" buttonText='Сохранить'>
+        <PopupWithForm overlayClick={overlayClick} onSubmit={handleSubmit} isOpen={props.isOpen} onClose={props.onClose} name="add" title="Новое место" buttonText={handleButtonText}>
           <input className="popup__item popup__item_title_add" value={name}
                  onChange={handleNameChange} type="text" name="name" placeholder="Название" required minLength="2" maxLength="30" />
             <span className="text-input-name-error popup__input-error"></span>

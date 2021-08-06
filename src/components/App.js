@@ -19,6 +19,12 @@ function App() {
     const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState([])
 
+    const [textButton, setTextButton] = React.useState(false)
+
+  const changeTextButton = () =>{
+   setTextButton(true)
+  }
+
     React.useEffect(() => {
       api.getUserInfo()
           .then(res => {setCurrentUser(res)})
@@ -52,7 +58,7 @@ function App() {
     function handleEditAvatarClick(){
         setEditAvatarPopupOpen(true)
     }
-
+    //Меняет информацию о пользователе
     const handleUpdateUser = (data) => {
       api.setUserInfo(data)
           .then((res) => {
@@ -60,8 +66,11 @@ function App() {
             closeAllPopups()
           })
           .catch(err => {console.error(err)})
+          .finally(() => {
+            setTextButton(false)
+          })
     }
-
+    //Меняет аватар
     const handleUpdateAvatar = (data) => {
       api.changeAvatar(data)
           .then((res) => {
@@ -69,8 +78,11 @@ function App() {
             closeAllPopups()
           })
           .catch(err => {console.error(err)})
+          .finally(() => {
+            setTextButton(false)
+          })
     }
-
+    //Добавление новой карточки
     const handleAddPlaceSubmit = (newCard) => {
       api.setCardServer(newCard)
           .then((res) => {
@@ -78,6 +90,9 @@ function App() {
             closeAllPopups()
           })
           .catch(err => {console.error(err)})
+          .finally(() => {
+            setTextButton(false)
+          })
     }
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
@@ -128,9 +143,30 @@ function App() {
               setCards={setCards}
 
           />
-          <AddPlacePopup overlay={overlayClick} onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
-          <EditAvatarPopup overlay={overlayClick} onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
-          <EditProfilePopup overlay={overlayClick} onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+          <AddPlacePopup
+              isText={textButton}
+              onChangeTextButton={changeTextButton}
+              overlay={overlayClick}
+              onAddPlace={handleAddPlaceSubmit}
+              isOpen={isAddPlacePopupOpen}
+              onClose={closeAllPopups}
+          />
+          <EditAvatarPopup
+              isText={textButton}
+              onChangeTextButton={changeTextButton}
+              overlay={overlayClick}
+              onUpdateAvatar={handleUpdateAvatar}
+              isOpen={isEditAvatarPopupOpen}
+              onClose={closeAllPopups}
+          />
+          <EditProfilePopup
+              isText={textButton}
+              onChangeTextButton={changeTextButton}
+              overlay={overlayClick}
+              onUpdateUser={handleUpdateUser}
+              isOpen={isEditProfilePopupOpen}
+              onClose={closeAllPopups}
+          />
           <ImagePopup overlay={overlayClick} isOpen={isImagePopupOpen} onClose={closeAllPopups} card={selectedCard} />
           <Footer />
       </div>
