@@ -20,7 +20,7 @@ function AddPlacePopup(props){
 
   function handleSubmit(e){
     e.preventDefault()
-    props.onChangeTextButton();
+    props.onChangeLoading();
     props.onAddPlace({
       name,
       link,
@@ -31,7 +31,7 @@ function AddPlacePopup(props){
     props.overlay(e.target)
   }
 
-  const handleButtonText = (`${props.isText ? 'Сохранение...' : 'Сохранение'}`);
+  const handleButtonText = (`${props.isLoading ? 'Сохранение...' : 'Сохранение'}`);
 
     return(
         <PopupWithForm overlayClick={overlayClick} onSubmit={handleSubmit} isOpen={props.isOpen} onClose={props.onClose} name="add" title="Новое место" buttonText={handleButtonText}>

@@ -2,12 +2,12 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 
-function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, overlay, isText, onChangeTextButton}){
+function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, overlay, isLoading, onChangeLoading}){
   const inputAvatarRef = React.useRef();
 
   function handleSubmit(e) {
     e.preventDefault();
-    onChangeTextButton();
+    onChangeLoading();
     onUpdateAvatar({
       avatar: inputAvatarRef.current.value /* Значение инпута, полученное с помощью рефа */,
     });
@@ -17,7 +17,7 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, overlay, isText, onCh
     overlay(e.target)
   }
 
-  const handleButtonText = (`${isText ? 'Сохранение...' : 'Сохранение'}`);
+  const handleButtonText = (`${isLoading ? 'Сохранение...' : 'Сохранение'}`);
 
 
   return(

@@ -17,12 +17,11 @@ function App() {
     const [cards, setCards] = React.useState([])
     const [selectedCard, setSelectedCard] = React.useState({})
     const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
-    const [currentUser, setCurrentUser] = React.useState([])
+    const [currentUser, setCurrentUser] = React.useState({})
+    const [isLoading, setIsLoading] = React.useState(false)
 
-    const [textButton, setTextButton] = React.useState(false)
-
-  const changeTextButton = () =>{
-   setTextButton(true)
+    const changeLoading = () =>{
+      setIsLoading(true)
   }
 
     React.useEffect(() => {
@@ -67,7 +66,7 @@ function App() {
           })
           .catch(err => {console.error(err)})
           .finally(() => {
-            setTextButton(false)
+            setIsLoading(false)
           })
     }
     //Меняет аватар
@@ -79,7 +78,7 @@ function App() {
           })
           .catch(err => {console.error(err)})
           .finally(() => {
-            setTextButton(false)
+            setIsLoading(false)
           })
     }
     //Добавление новой карточки
@@ -91,7 +90,7 @@ function App() {
           })
           .catch(err => {console.error(err)})
           .finally(() => {
-            setTextButton(false)
+            setIsLoading(false)
           })
     }
   function handleCardLike(card) {
@@ -144,24 +143,24 @@ function App() {
 
           />
           <AddPlacePopup
-              isText={textButton}
-              onChangeTextButton={changeTextButton}
+              isLoading={isLoading}
+              onChangeLoading={changeLoading}
               overlay={overlayClick}
               onAddPlace={handleAddPlaceSubmit}
               isOpen={isAddPlacePopupOpen}
               onClose={closeAllPopups}
           />
           <EditAvatarPopup
-              isText={textButton}
-              onChangeTextButton={changeTextButton}
+              isLoading={isLoading}
+              onChangeLoading={changeLoading}
               overlay={overlayClick}
               onUpdateAvatar={handleUpdateAvatar}
               isOpen={isEditAvatarPopupOpen}
               onClose={closeAllPopups}
           />
           <EditProfilePopup
-              isText={textButton}
-              onChangeTextButton={changeTextButton}
+              isLoading={isLoading}
+              onChangeLoading={changeLoading}
               overlay={overlayClick}
               onUpdateUser={handleUpdateUser}
               isOpen={isEditProfilePopupOpen}
